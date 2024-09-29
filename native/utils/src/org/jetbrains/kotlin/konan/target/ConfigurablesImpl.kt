@@ -28,6 +28,9 @@ class GccConfigurablesImpl(target: KonanTarget, properties: Properties, dependen
 class AndroidConfigurablesImpl(target: KonanTarget, properties: Properties, dependenciesRoot: String?, progressCallback: ProgressCallback) : AndroidConfigurables,
     KonanPropertiesLoader(target, properties, dependenciesRoot, progressCallback = progressCallback)
 
+class OHOSConfigurablesImpl(target: KonanTarget, properties: Properties, dependenciesRoot: String?, progressCallback: ProgressCallback) : OHOSConfigurables,
+    KonanPropertiesLoader(target, properties, dependenciesRoot, progressCallback = progressCallback)
+
 fun loadConfigurables(
     target: KonanTarget,
     properties: Properties,
@@ -43,4 +46,6 @@ fun loadConfigurables(
     Family.ANDROID -> AndroidConfigurablesImpl(target, properties, dependenciesRoot, progressCallback)
 
     Family.MINGW -> MingwConfigurablesImpl(target, properties, dependenciesRoot, progressCallback)
+
+    Family.OHOS -> OHOSConfigurablesImpl(target, properties, dependenciesRoot, progressCallback)
 }
