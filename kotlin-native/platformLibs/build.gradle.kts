@@ -51,6 +51,7 @@ enabledTargets(platformManager).forEach { target ->
         val fileNamePrefix = PlatformLibsInfo.namePrefix
         val artifactName = "${fileNamePrefix}${df.name}"
 
+        println("daixianze ${targetName}")
         val libTask = tasks.register(interopTaskName(libName, targetName), KonanInteropTask::class.java) {
             group = BasePlugin.BUILD_GROUP
             description = "Build the Kotlin/Native platform library '$libName' for '$target'"

@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#if KONAN_MACOSX || KONAN_IOS || KONAN_TVOS || KONAN_WATCHOS || KONAN_ANDROID
+#if KONAN_MACOSX || KONAN_IOS || KONAN_TVOS || KONAN_WATCHOS || KONAN_ANDROID || KONAN_OHOS
 #include <stdlib.h>
 #elif KONAN_LINUX
 #include <unistd.h>
@@ -52,7 +52,7 @@ void Kotlin_Uuid_getRandomBytes(KRef byteArray, KInt size) {
     ArrayHeader* array = byteArray->array();
     uint8_t* address = reinterpret_cast<uint8_t*>(ByteArrayAddressOfElementAt(array, 0));
 
-#if KONAN_MACOSX || KONAN_IOS || KONAN_TVOS || KONAN_WATCHOS || KONAN_ANDROID
+#if KONAN_MACOSX || KONAN_IOS || KONAN_TVOS || KONAN_WATCHOS || KONAN_ANDROID || KONAN_OHOS
     arc4random_buf(address, size);
 #elif KONAN_LINUX
     long count = 0;

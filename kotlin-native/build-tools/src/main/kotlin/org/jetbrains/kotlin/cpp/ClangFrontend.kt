@@ -49,7 +49,8 @@ private abstract class ClangFrontendJob : WorkAction<ClangFrontendJob.Parameters
             execClang.execKonanClang(targetName.get()) {
                 workingDir = baseDir
                 executable = compilerExecutable.get()
-                args = arguments.get() + listOf(inputRelativePath.toString(), "-o", outputFile.get().asFile.absolutePath)
+                println("daixianze ${compilerExecutable} ${arguments}")
+                args = arguments.get() + listOf(inputRelativePath.toString(), "-o", outputFile.get().asFile.absolutePath, "-v")
             }
         }
     }

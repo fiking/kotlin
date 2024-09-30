@@ -20,6 +20,13 @@ internal object Android {
             "android-${API}/arch-${architectureMap.getValue(target)}"
 }
 
+internal object Ohos {
+    const val API = "13"
+    private val architectureMap = mapOf(
+            KonanTarget.OHOS_ARM64 to "arm64"
+    )
+}
+
 sealed class ClangArgs(
         private val configurables: Configurables,
         private val forJni: Boolean
@@ -100,6 +107,7 @@ sealed class ClangArgs(
         val hasCustomSysroot = configurables is ZephyrConfigurables
                 || configurables is WasmConfigurables
                 || configurables is AndroidConfigurables
+                || configurables is OhosConfigurables
                 || argsForWindowsJni
         if (!hasCustomSysroot) {
             when (configurables) {
@@ -138,6 +146,17 @@ sealed class ClangArgs(
             listOf(
                     "-D__ANDROID_API__=${Android.API}",
                     "--sysroot=$absoluteTargetSysRoot/$architectureDir",
+                    "-I$toolchainSysroot/usr/include/c++/v1",
+                    "-I$toolchainSysroot/usr/include",
+                    "-I$toolchainSysroot/usr/include/$clangTarget"
+            )
+        }
+
+        KonanTarget.OHOS_ARM64  -> {
+            val clangTarget = targetTriple.toString()
+            val toolchainSysroot = "$absoluteTargetToolchain/sysroot"
+            listOf(
+                    "--sysroot=$absoluteTargetSysRoot",
                     "-I$toolchainSysroot/usr/include/c++/v1",
                     "-I$toolchainSysroot/usr/include",
                     "-I$toolchainSysroot/usr/include/$clangTarget"

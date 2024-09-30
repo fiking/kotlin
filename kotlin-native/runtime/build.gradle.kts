@@ -620,8 +620,12 @@ val stdlibTask = tasks.register<Copy>("nativeStdlib") {
 
     val allPossibleTargets = project.extensions.getByType<PlatformManager>().targetValues.map { it.name }
     val kotlinVersion = kotlinVersion
+    
+   println("daixianze1 ${allPossibleTargets}")
+
     eachFile {
         if (name == "manifest") {
+            println("daixianze manifest")
             // Stdlib is a common library that doesn't depend on anything target-specific.
             // The current compiler can't create a library with manifest file that lists all targets.
             // So, add all targets to the manifest file.

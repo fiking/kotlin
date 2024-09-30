@@ -35,7 +35,7 @@ fun File.saveProperties(properties: Properties) {
     val rawData = StringWriter().apply {
         properties.store(this, null)
     }.toString()
-
+//    println("daixianze ${rawData}")
     val lines = rawData
         .split(System.lineSeparator())
         .filterNot { it.isEmpty() || it.startsWith("#") }

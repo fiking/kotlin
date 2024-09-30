@@ -15,7 +15,7 @@
  */
 
 #include <cstdint>
-#ifdef KONAN_ANDROID
+#ifdef KONAN_ANDROID || KONAN_OHOS
 #include <android/log.h>
 #endif
 #include <cstdio>
@@ -245,6 +245,8 @@ NO_EXTERNAL_CALLS_CHECK uintptr_t currentThreadId() {
     }
     return tid;
 #elif KONAN_ANDROID
+    return gettid();
+#elif KONAN_OHOS
     return gettid();
 #elif KONAN_LINUX
     return gettid();
