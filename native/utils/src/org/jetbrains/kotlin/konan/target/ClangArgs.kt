@@ -157,7 +157,7 @@ sealed class ClangArgs(
             val toolchainSysroot = "$absoluteTargetToolchain/sysroot"
             listOf(
                     "--sysroot=$absoluteTargetSysRoot",
-                    "-I$toolchainSysroot/usr/include/c++/v1",
+                    "-I$toolchainSysroot/../include/libcxx-ohos/include/c++/v1",
                     "-I$toolchainSysroot/usr/include",
                     "-I$toolchainSysroot/usr/include/$clangTarget"
             )
