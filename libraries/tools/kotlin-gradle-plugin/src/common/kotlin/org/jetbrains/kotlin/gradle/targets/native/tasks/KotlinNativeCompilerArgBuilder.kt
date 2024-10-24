@@ -92,7 +92,7 @@ private fun buildKotlinNativeCommonArgs(
         addArgs("-P", plugin.options.arguments)
     }
 
-    addKey("-Werror", toolOptions.allWarningsAsErrors.get())
+//    addKey("-Werror", toolOptions.allWarningsAsErrors.get())
     addKey("-nowarn", toolOptions.suppressWarnings.get())
     addKey("-verbose", toolOptions.verbose.get())
 
